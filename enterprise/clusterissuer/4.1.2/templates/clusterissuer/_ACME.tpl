@@ -12,6 +12,7 @@
   {{- $issuerSecretName := printf "%s-clusterissuer-secret" .name }}
   {{- $acmednsDict := dict -}}
   {{- if eq .type "acmedns" }}
+    {{- fail (printf "Got: [%s]" (toJson .acmednsConfig)) -}}
     {{- range .acmednsConfig }}
       {{- $_ := set $acmednsDict .domain (omit . "domain") -}}
     {{- end }}
@@ -106,6 +107,6 @@ stringData:
   akaccessToken: {{ .akaccessToken | default "" }}
   doaccessToken: {{ .doaccessToken | default "" }}
   rfctsigSecret: {{ .rfctsigSecret | default "" }}
-  acmednsJson: {{ $acmednsDict | toJson | toString }}
+  acmednsJson: {{ toJson $acmednsDict }}
 {{- end }}
 {{- end -}}
