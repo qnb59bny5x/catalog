@@ -15,7 +15,7 @@
     {{- range .acmednsConfig }}
       {{- $_ := set $acmednsDict .domain (omit . "domain") -}}
     {{- end }}
-    {{- fail (printf "Converted: %s" (toJson .acmednsDict)) -}}
+    {{- fail (printf "Converted: %s" (toJson $acmednsDict)) -}}
   {{- end -}}
 ---
 apiVersion: cert-manager.io/v1
