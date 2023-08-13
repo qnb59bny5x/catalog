@@ -12,10 +12,10 @@
   {{- $issuerSecretName := printf "%s-clusterissuer-secret" .name }}
   {{- $acmednsDict := dict -}}
   {{- if eq .type "acmedns" }}
-    {{- fail (printf "Got: [%s]" (toJson .acmednsConfig)) -}}
     {{- range .acmednsConfig }}
       {{- $_ := set $acmednsDict .domain (omit . "domain") -}}
     {{- end }}
+    {{- fail (printf "Converted: %s" (toJson .acmednsDict)) -}}
   {{- end -}}
 ---
 apiVersion: cert-manager.io/v1
