@@ -106,7 +106,7 @@ stringData:
   akaccessToken: {{ .akaccessToken | default "" }}
   doaccessToken: {{ .doaccessToken | default "" }}
   rfctsigSecret: {{ .rfctsigSecret | default "" }}
-  {{- fail (printf "debug: %s" (toJson $acmednsDict)) -}}
-  acmednsJson: {{ toJson $acmednsDict }}
+  acmednsJson: >
+    {{ toJson $acmednsDict }}
 {{- end }}
 {{- end -}}
