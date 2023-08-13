@@ -15,7 +15,6 @@
     {{- range .acmednsConfig }}
       {{- $_ := set $acmednsDict .domain (omit . "domain") -}}
     {{- end }}
-    {{- fail (printf "Converted: %s" (toJson $acmednsDict)) -}}
   {{- end -}}
 ---
 apiVersion: cert-manager.io/v1
@@ -107,6 +106,7 @@ stringData:
   akaccessToken: {{ .akaccessToken | default "" }}
   doaccessToken: {{ .doaccessToken | default "" }}
   rfctsigSecret: {{ .rfctsigSecret | default "" }}
+  {{- fail (printf "debug: %s" (toJson $acmednsDict)) -}}
   acmednsJson: {{ toJson $acmednsDict }}
 {{- end }}
 {{- end -}}
